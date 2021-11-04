@@ -9,8 +9,11 @@ The accumulated remote sensing data of altimeters and scatterometers have provid
 2.a novel EEMD-LSTM approach, a hybrid of EEMD and LSTM, is proposed to the SLA time series forecasting. 
 
 Step 1: Determines the relative maxima for the RMSE array produced by the CRAM-ConvLSTM, which returns 20 sites of relative maxima values found in five areas (see Table 1) to construct the SLA time series forecasting networks with the EEMD-LSTM method. 
+
 Step 2: The original time series of input   from each site, which contains a set of SLA, SSTA, and SPDA time series,  are decomposed into five intrinsic mode functions (IMFs) to obtain more realistic and physically meaningful signals (Huang et al. 2019; Liu et al. 2019), yielding relatively stationary IMF that can be readily modeled by LSTM. 
+
 Step 3: We respectively, use an improved multivariate time series forecasting with LSTMs network to fit each IMF from T-14 to T. Then, each IMF is forecasted for SLA time series of  using the corresponding LSTM. 
+
 Step 4: The SLA time series forecasting result are calculated by the sum of the forecasting values of every IMF. 
 
 3.a successive correction method, which integrates the multivariate time series forecasting with EEMD-LSTM and the multivariate spatiotemporal sequence forecasting with CRAM-ConvLSTM, is proposed to improve the quality of SLA forecasting. The successive correction method, which uses relative scales of horizontal distance and SLA difference between CRAM-ConvLSTM-forecasting value and EEMD-LSTM-forecasting value
