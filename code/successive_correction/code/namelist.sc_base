@@ -1,0 +1,87 @@
+!
+! --- Work for successive marine elements
+!
+&input_file
+ !
+ bg_file   = 'wrf_BG_TIME.nc',
+ obs_file  = 'SFC_TIME.sfc', 'wsat_WSAT_TIMEv7',
+ ! ----
+ ! --- type : 'gtswind', 'seawind',
+ ! ---           1/0        1/0
+ obs_type  = SFCTYPE, WSATTYPE,
+ !
+/
+!
+&bg_options
+ ! --- 
+ ! --- domain range
+ ! ---
+ lon_beg    = LONBEG,
+ lon_end    = LONEND,
+ lat_beg    = LATBEG,
+ lat_end    = LATEND,
+ resolution = RES,
+ ! ---
+ ! --- bg field date
+ ! --- 
+ bg_date = 'BG_DATE00',
+/
+!
+&bogus
+ insert_bogus_storm              =    TRUE
+ num_storm                       =    TC_NUM,
+ latc_loc                        =    TCLAT
+ lonc_loc                        =    TCLON
+ !
+ ! --- maximum speed (m/s) and its radius (km)
+ vmax_meters_per_second          =     VMAX
+ rmax                            =     RMAX
+ ! --- Needed by bogus_scheme=1.
+ vmax_ratio                      =     VMAX_RATIO
+ !
+ ! --- radius of speed=50/30 knots, in km, for new scehme
+ r50                             =     R50
+ r30                             =     R30
+ !
+ ! --- alpha in rankine formula, for scheme=3, usually -0.60
+ ! --- 1 for old scheme, 2, 3 for new scheme by Gao
+ ! --- Note:
+ ! ---      If r50 and r30 exists, please bogus_scheme=3;
+ ! ---      Otherwise, please bogus_scheme=1.
+ alpha                           =      -0.60,    -0.60,
+ bogus_scheme                    =      SCHEME
+ !
+/
+!
+&obs_options
+ ! --- 
+ ! --- varible select:
+ ! ---  "speed", "direction", "temperature", 
+ ! ---     1          2             3
+ ! ---  select_num = 0, means no this varible;
+ !                   1,       yes
+ ! ------
+ select_num  = VAR_SELECT
+/
+!
+&control_success
+ ! ---
+ ! --- if verify the result of successive
+ ! ---
+ if_verify  = VERIFY
+ ! ---
+ ! --- Obs date away from the bg date out of window_delt, 
+ ! ---     then move it off. unit: minute
+ ! ---
+ window_delt = WINDOW
+ ! ---
+ ! --- radius ( Wind and temperature are different. )
+ ! ---
+ wd_radius = WIND_RA
+ t2_radius = TEMP_RA
+ ! ---
+ ! --- obs radius
+ ! --- 
+ obs_radius = OBS_RA
+ !
+/
