@@ -22,34 +22,7 @@ Step 4: The SLA time series forecasting result are calculated by the sum of the 
 successive correction method, which integrates the multivariate time series forecasting with EEMD-LSTM and the multivariate spatiotemporal sequence forecasting with CRAM-ConvLSTM, is proposed to improve the quality of SLA forecasting. The successive correction method, which uses relative scales of horizontal distance and SLA difference between CRAM-ConvLSTM-forecasting value and EEMD-LSTM-forecasting value
 
 
-## Training
-
-```shell
-python main.py
-  --device 0
-  --model_name MAMNet
-  --data_dir <path of the DIV2K dataset>
-  --exp_dir <path of experiments>
-  --exp_name <name of experiment> 
-  --num_res 64 --num_feats 64 
-  --is_MAM --is_CSI --is_ICD --is_CSD 
-  --scale <scaling factor> 
-  --is_init_res 
-  --is_train 
-```
 
 ## Test
 
-``` shell
-python main.py 
-  --device 0 
-  --model_name MAMNet 
-  --data_dir <path of datasets>
-  --dataset_name <name of dataset>
-  --exp_dir <path of experiments> 
-  --exp_name <name of experiment>  
-  --num_res 64 --num_feats 64 
-  --is_MAM --is_CSI --is_ICD --is_CSD 
-  --scale <scaling factor> 
-  --is_test
-```
+ncl successive_correction.ncl
