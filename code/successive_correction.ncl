@@ -82,8 +82,6 @@ end do
   end do
 
 
-  printVarSummary(HMnet_forecast)
-
   system("/bin/rm -f ../results/HMnet.nc")   ; remove any pre-existing file
   ncdf   = addfile("../results/HMnet.nc" ,"c")  ; open output netCDF file
   filedimdef(ncdf,"time",-1,True)
